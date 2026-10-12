@@ -1,0 +1,1165 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #FDFCF5;
+  --color-surface: #F8F5EA;
+  --color-surface-light: #F2EDDC;
+  --color-surface-elevated: #EBE3CC;
+
+  --color-teal: #13515D;
+  --color-teal-dark: #0C3841;
+  --color-teal-light: #1B6A79;
+
+  --color-accent: #D4782A;
+  --color-accent-hover: #B8651F;
+  --color-accent-dim: rgba(212, 120, 42, 0.12);
+
+  --color-gold: #CBA35C;
+  --color-olive: #7A8C5F;
+  --color-slate-blue: #93A7CB;
+
+  --color-bull: #059669;
+  --color-bear: #DC2626;
+
+  --color-text-primary: #142B2E;
+  --color-text-secondary: #4A6062;
+  --color-text-tertiary: #6E8385;
+
+  --color-border-light: rgba(19, 81, 93, 0.1);
+  --color-border-strong: rgba(19, 81, 93, 0.2);
+
+  --font-sans: var(--font-poppins), var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-serif), Georgia, serif;
+  --font-mono: var(--font-mono), monospace;
+
+  --font-family-poppins: var(--font-poppins), system-ui, -apple-system, sans-serif;
+
+  --space-section: 128px;
+  --space-section-sm: 88px;
+}
+
+@layer base {
+
+:root {
+  --lenis-scroll-duration: 1.2s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--color-void);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
+/* Modern Trading Cursor - Stunning Design */
+.modern-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Core dot with gradient */
+.cursor-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  z-index: 10;
+}
+
+.core-dot {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-gold));
+  box-shadow: 
+    0 0 12px rgba(212, 120, 42, 0.6),
+    0 0 24px rgba(203, 163, 92, 0.3);
+  animation: core-pulse 2s ease-in-out infinite;
+}
+
+@keyframes core-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% { 
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+/* Orbiting particles */
+.orbit-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  animation: rotate-orbit 4s linear infinite;
+}
+
+@keyframes rotate-orbit {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.orbit-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-teal);
+  box-shadow: 0 0 6px var(--color-teal);
+}
+
+.particle-1 {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent);
+  box-shadow: 0 0 8px var(--color-accent);
+  animation: particle-glow 1.5s ease-in-out infinite;
+}
+
+.particle-2 {
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: var(--color-gold);
+  box-shadow: 0 0 8px var(--color-gold);
+  animation: particle-glow 1.5s ease-in-out infinite 0.5s;
+}
+
+.particle-3 {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-teal);
+  box-shadow: 0 0 8px var(--color-teal);
+  animation: particle-glow 1.5s ease-in-out infinite 1s;
+}
+
+@keyframes particle-glow {
+  0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(0.8); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* Glow ring */
+.glow-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  background: linear-gradient(135deg, var(--color-teal), var(--color-accent), var(--color-gold)) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Animated rotating ring */
+.animated-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: var(--color-accent);
+  border-right-color: var(--color-gold);
+  opacity: 0;
+  animation: spin-ring 2s linear infinite;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes spin-ring {
+  0% { 
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% { 
+    transform: translate(-50%, -50%) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+/* Hover circle expansion */
+.hover-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent)15 0%, transparent 70%);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover State - All elements scale up */
+.modern-cursor.hovering {
+  width: 70px;
+  height: 70px;
+}
+
+.modern-cursor.hovering .core-dot {
+  transform: scale(1.6);
+  background: linear-gradient(135deg, var(--color-gold), var(--color-accent));
+  box-shadow: 
+    0 0 20px rgba(212, 120, 42, 0.8),
+    0 0 40px rgba(203, 163, 92, 0.5);
+}
+
+.modern-cursor.hovering .orbit-container {
+  width: 50px;
+  height: 50px;
+  animation-duration: 2s;
+}
+
+.modern-cursor.hovering .orbit-particle {
+  width: 4px;
+  height: 4px;
+}
+
+.modern-cursor.hovering .glow-ring {
+  width: 60px;
+  height: 60px;
+  opacity: 0.7;
+  box-shadow: 0 0 30px rgba(212, 120, 42, 0.3);
+}
+
+.modern-cursor.hovering .animated-ring {
+  opacity: 1;
+  width: 66px;
+  height: 66px;
+  border-width: 3px;
+}
+
+.modern-cursor.hovering .hover-circle {
+  opacity: 1;
+  width: 80px;
+  height: 80px;
+  animation: pulse-expand 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-expand {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.6;
+  }
+}
+
+/* Realistic Trading Chart Animations */
+
+/* Candlestick fade in */
+@keyframes candle-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-candle-fade {
+  animation: candle-fade 0.4s ease-out forwards;
+  opacity: 0;
+}
+
+/* Candlestick drawing (like live chart) */
+@keyframes candle-draw {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.animate-candle-draw {
+  animation: candle-draw 0.3s ease-out forwards;
+  opacity: 0;
+}
+
+/* Question marks for confusion */
+@keyframes question {
+  0%, 30% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}
+
+.animate-question {
+  animation: question 2s ease-in-out infinite;
+}
+
+/* Wrong entry circles */
+@keyframes wrong-entry {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  20% {
+    opacity: 0.8;
+    transform: scale(1.2);
+  }
+  40%, 60% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+.animate-wrong-entry {
+  animation: wrong-entry 2s ease-in-out infinite;
+}
+
+/* Liquidity zone appearing */
+@keyframes zone-appear {
+  0% {
+    opacity: 0;
+    width: 0;
+  }
+  100% {
+    opacity: 0.25;
+    width: 140px;
+  }
+}
+
+.animate-zone-appear {
+  animation: zone-appear 0.8s ease-out forwards;
+}
+
+/* Perfect entry point */
+@keyframes perfect-entry {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.animate-perfect-entry {
+  animation: perfect-entry 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* Stop loss line drawing */
+@keyframes sl-line {
+  0% {
+    opacity: 0;
+    strokeDashoffset: 100;
+  }
+  100% {
+    opacity: 0.6;
+    strokeDashoffset: 0;
+  }
+}
+
+.animate-sl-line {
+  animation: sl-line 0.8s ease-out forwards;
+}
+
+/* Take profit line drawing */
+@keyframes tp-line {
+  0% {
+    opacity: 0;
+    strokeDashoffset: 100;
+  }
+  100% {
+    opacity: 0.7;
+    strokeDashoffset: 0;
+  }
+}
+
+.animate-tp-line {
+  animation: tp-line 0.8s ease-out forwards;
+}
+
+/* Profit path animation */
+@keyframes profit-path {
+  0% {
+    opacity: 0;
+    strokeDasharray: 200;
+    strokeDashoffset: 200;
+  }
+  100% {
+    opacity: 0.9;
+    strokeDashoffset: 0;
+  }
+}
+
+.animate-profit-path {
+  animation: profit-path 1.2s ease-out forwards;
+}
+
+/* Keep old animations for backward compatibility */
+@keyframes draw-line {
+  0% {
+    strokeDashoffset: 200;
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    strokeDashoffset: 0;
+    opacity: 0.7;
+  }
+}
+
+.animate-draw-line {
+  animation: draw-line 3s ease-out forwards;
+}
+
+/* Points appearing one by one */
+@keyframes point-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-point-appear {
+  animation: point-appear 0.5s ease-out forwards;
+}
+
+/* Flicker effect for uncertainty indicators */
+@keyframes flicker {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  25% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 0.7;
+  }
+}
+
+.animate-flicker {
+  animation: flicker 2s ease-in-out infinite;
+}
+
+/* Structure path drawing */
+@keyframes draw-structure {
+  0% {
+    strokeDashoffset: 250;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    strokeDashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-draw-structure {
+  animation: draw-structure 3.5s ease-out forwards;
+}
+
+/* Liquidity blocks rising up */
+@keyframes block-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+    transform: translateY(0);
+  }
+}
+
+.animate-block-rise {
+  animation: block-rise 0.8s ease-out forwards;
+}
+
+/* Arrows appearing */
+@keyframes arrow-up {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
+.animate-arrow-up {
+  animation: arrow-up 0.6s ease-out forwards;
+}
+
+/* Pulse circles for volume/liquidity indication */
+@keyframes pulse-circle {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  30% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  60% {
+    opacity: 0.2;
+    transform: scale(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+.animate-pulse-circle {
+  animation: pulse-circle 2s ease-out infinite;
+}
+
+/* Subtle bounce for map pin */
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 3s ease-in-out infinite;
+}
+
+/* Ping ring for location marker */
+.animate-ping-ring {
+  animation: ping-ring 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Old cursor styles - keep for backwards compatibility if needed */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-cursor.hovering {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #D4782A;
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: var(--color-teal);
+  color: var(--color-void);
+  padding: 1rem 1.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  border-radius: 3px;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent);
+  color: var(--color-void);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: transparent;
+  color: var(--color-text-primary);
+  padding: 1rem 1.75rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1px solid var(--color-border-strong);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent-dim);
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+.container-custom {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  position: relative;
+  z-index: 10;
+}
+
+@media (max-width: 1200px) {
+  .container-custom { padding: 0 2rem; }
+}
+@media (max-width: 768px) {
+  .container-custom { padding: 0 1.25rem; }
+}
+
+/* Signature visual: precise data grid, restrained opacity */
+.market-grid {
+  position: absolute;
+  inset: 0;
+  background-size: 64px 64px;
+  background-image:
+    linear-gradient(to right, rgba(19, 81, 93, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(19, 81, 93, 0.04) 1px, transparent 1px);
+  pointer-events: none;
+  z-index: 0;
+}
+.market-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, transparent 30%, var(--color-void) 100%);
+}
+
+/* Animations for "to Professional Trader" */
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 1px 2px rgba(212, 120, 42, 0.3), 0 0 10px rgba(212, 120, 42, 0);
+  }
+  50% {
+    text-shadow: 0 1px 2px rgba(212, 120, 42, 0.3), 0 0 20px rgba(212, 120, 42, 0.4), 0 0 30px rgba(212, 120, 42, 0.2);
+  }
+}
+
+@keyframes expand-line {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5) rotate(180deg);
+  }
+}
+
+@keyframes letter-wave {
+  0%, 100% {
+    transform: translateY(0px);
+    text-shadow: 0 2px 4px rgba(212, 120, 42, 0.3);
+  }
+  50% {
+    transform: translateY(-10px);
+    text-shadow: 0 6px 12px rgba(212, 120, 42, 0.5), 0 0 20px rgba(212, 120, 42, 0.3);
+  }
+}
+
+@keyframes float-dot {
+  0%, 100% {
+    transform: translateY(0px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(30deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(30deg);
+    opacity: 0;
+  }
+}
+
+.animate-float-dot {
+  animation: float-dot 2s ease-in-out infinite;
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Curriculum Card Animations */
+.curriculum-card {
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.curriculum-card:hover {
+  transform: translateY(-8px);
+}
+
+.curriculum-card .icon-container {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.curriculum-card:hover .icon-container {
+  box-shadow: 0 8px 24px -8px currentColor;
+}
+
+/* Advanced Curriculum Cards */
+.curriculum-card-advanced {
+  transform-style: preserve-3d;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.curriculum-card-advanced:hover {
+  transform: translateY(-12px) scale(1.02);
+}
+
+.icon-container-advanced {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Orbiting dot animation */
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(25px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) translateX(25px) rotate(-360deg);
+    opacity: 0;
+  }
+}
+
+.animate-orbit {
+  animation: orbit 3s linear infinite;
+}
+
+/* Pulse sequence for decorative dots */
+@keyframes pulse-sequence {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.animate-pulse-sequence {
+  animation: pulse-sequence 1.5s ease-in-out infinite;
+}
+
+/* Slow floating background blobs */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+/* Gradient radial utility */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Radar sweep animation for stop-hunt detection */
+@keyframes radar-sweep {
+  0% {
+    transform: rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+.animate-radar-sweep {
+  animation: radar-sweep 4s linear infinite;
+}
+
+/* Liquidity line drawing animation */
+@keyframes draw-liquidity-line {
+  0% {
+    stroke-dasharray: 0, 300;
+  }
+  100% {
+    stroke-dasharray: 300, 0;
+  }
+}
+
+.animate-draw-liquidity-line {
+  stroke-dasharray: 300;
+  animation: draw-liquidity-line 3s ease-out forwards;
+}
+
+/* Pulse marker for entry point */
+.animate-pulse-marker {
+  animation: pulse-marker 2s ease-in-out infinite;
+}
+
+@keyframes pulse-marker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Shine overlay effect */
+.shine-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  animation: shine-sweep 2s ease-in-out;
+  pointer-events: none;
+}
+
+.animate-text-glow {
+  animation: text-glow 3s ease-in-out infinite;
+}
+
+.animate-expand-line {
+  animation: expand-line 1.5s ease-out forwards;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-letter-wave {
+  display: inline-block;
+  animation: letter-wave 3s ease-in-out infinite;
+}
+
+.market-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+.market-grid-dark::after {
+  background: radial-gradient(circle at 50% 30%, transparent 30%, var(--color-teal) 100%);
+}
+
+.card-interactive {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-interactive:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-border-strong);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-dim);
+}
+
+.interactive {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Slow-sweeping accent shimmer for editorial emphasis text */
+@keyframes shimmerGold {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.text-shimmer-gold {
+  background-image: linear-gradient(90deg, #B8651F 0%, #D4782A 20%, #E89A4C 40%, #CBA35C 55%, #D4782A 75%, #B8651F 100%);
+  background-size: 250% 100%;
+  animation: shimmerGold 7s linear infinite;
+  transition: filter 0.4s ease;
+}
+.text-shimmer-gold:hover {
+  animation-duration: 1.8s;
+  filter: drop-shadow(0 0 16px rgba(212, 120, 42, 0.35));
+}
+
+.hero-word-hover {
+  display: inline-block;
+  cursor: default;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-word-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* Floating market-ticker chips inline within copy */
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+.ticker-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  padding: 0.02em 0.55em;
+  margin: 0 0.05em;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  vertical-align: middle;
+  animation: chipFloat 3s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--color-teal);
+  background: rgba(19, 81, 93, 0.07);
+  border: 1px solid rgba(19, 81, 93, 0.16);
+}
+.ticker-chip:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 16px -6px rgba(19, 81, 93, 0.3);
+}
+.ticker-chip.chip-gold {
+  color: var(--color-accent-hover);
+  background: rgba(203, 163, 92, 0.14);
+  border-color: rgba(203, 163, 92, 0.35);
+}
+.ticker-chip.chip-bull {
+  color: var(--color-bull);
+  background: rgba(5, 150, 105, 0.08);
+  border-color: rgba(5, 150, 105, 0.22);
+}
+
+/* Diagonal shine sweep for primary CTAs */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  left: 125%;
+}
+
+@keyframes accordionDown {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordionUp {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: var(--color-surface); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--color-border-strong); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+::-webkit-scrollbar { display: none; }
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
+}

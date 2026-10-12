@@ -1,0 +1,16 @@
+export { default as Hero } from "./Hero";
+export { default as ProcessDifference } from "./ProcessDifference";
+export { default as CurriculumMap } from "./CurriculumMap";
+export { default as Founder } from "./Founder";
+export { default as WhyChoose } from "./WhyChoose";
+export { default as LearningOptions } from "./LearningOptions";
+export { default as CourseComparison } from "./CourseComparison";
+export { default as Philosophy } from "./Philosophy";
+export { default as MentorProfile } from "./MentorProfile";
+export { default as FAQ } from "./FAQ";
+export { default as FinalCta } from "./FinalCta";
+export { default as Contact } from "./Contact";
+export { default as LiveDataFeed } from "./LiveDataFeed";
+export { default as Calculator } from "./Calculator";
+export { default as LivePractice } from "./LivePractice";
+export { default as Mission } from "./Mission";
